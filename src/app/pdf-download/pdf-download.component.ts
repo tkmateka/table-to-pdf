@@ -33,13 +33,13 @@ export class PdfDownloadComponent implements OnInit {
 
     pdf.text('Angular PDF Table', 14, 10);
     pdf.setFontSize(12);
-    pdf.setTextColor(255, 100, 200);
+    pdf.setTextColor(100);
 
 
     (pdf as any).autoTable({
       head: this.header,
       body: this.tableData,
-      theme: 'plain',
+      theme: 'striped',
       headStyles: {
         halign: "center",
         valign: "middle",
