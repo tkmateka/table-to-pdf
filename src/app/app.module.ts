@@ -3,15 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PdfDownloadComponent } from './pdf-download/pdf-download.component';
+
+import {MatButtonModule} from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PdfDownloadComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    MatButtonModule,
+    FlexLayoutModule
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })
