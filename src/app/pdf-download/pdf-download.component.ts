@@ -31,17 +31,31 @@ export class PdfDownloadComponent implements OnInit {
   public downloadPDF(): void {
     var pdf = new jsPDF();
 
-    pdf.text('Angular PDF Table', 11, 8);
+    pdf.text('Angular PDF Table', 14, 10);
     pdf.setFontSize(12);
-    pdf.setTextColor(99);
+    pdf.setTextColor(255, 100, 200);
 
 
     (pdf as any).autoTable({
       head: this.header,
       body: this.tableData,
       theme: 'plain',
+      headStyles: {
+        halign: "center",
+        valign: "middle",
+        lineWidth: 0.25,
+        lineColor: 200
+      },
+      bodyStyles: {
+        halign: "center",
+        lineWidth: 0.25,
+        lineColor: 200
+      },
+      margin: {
+        top: 15
+      },
       didDrawCell: (data: any) => {
-        console.log(data.column.index)
+        // console.log(data.column.index)
       }
     })
 
@@ -49,6 +63,6 @@ export class PdfDownloadComponent implements OnInit {
     pdf.output('dataurlnewwindow')
 
     // Download PDF doc  
-    pdf.save('table.pdf');
+    // pdf.save('table.pdf');
   }
 }
