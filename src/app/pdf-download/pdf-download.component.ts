@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-let { jsPDF } = require('jspdf');
-import 'jspdf-autotable';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-pdf-download',
@@ -22,47 +21,12 @@ export class PdfDownloadComponent implements OnInit {
     [8, 'Lil', 'lil@yahoo.com', 'Sales']
   ]
 
-  constructor() { }
+  constructor(private common: CommonService) { }
 
   ngOnInit(): void {
   }
 
-  // Export PDF
-  public downloadPDF(): void {
-    var pdf = new jsPDF();
-
-    pdf.text('Angular PDF Table', 14, 10);
-    pdf.setFontSize(12);
-    pdf.setTextColor(100);
-
-
-    (pdf as any).autoTable({
-      head: this.header,
-      body: this.tableData,
-      theme: 'striped',
-      headStyles: {
-        halign: "center",
-        valign: "middle",
-        lineWidth: 0.25,
-        lineColor: 200
-      },
-      bodyStyles: {
-        halign: "center",
-        lineWidth: 0.25,
-        lineColor: 200
-      },
-      margin: {
-        top: 15
-      },
-      didDrawCell: (data: any) => {
-        // console.log(data.column.index)
-      }
-    })
-
-    // Open PDF document in browser's new tab
-    pdf.output('dataurlnewwindow')
-
-    // Download PDF doc  
-    // pdf.save('table.pdf');
+  downloadPDF() {
+    this.common.downloadPDF(this.header, this.tableData);
   }
 }
